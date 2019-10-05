@@ -2,14 +2,25 @@
 .search_field.middle-xs
   span Encontre seu produto
   .input
-    input(placeholder="Pesquisar...")
+    input(placeholder="Pesquisar...", v-model="filter")
     .icon
       img(src="/icons/magnifying-glass.svg") 
 </template>
 
 <script>
 export default {
+  computed:{
     
+    filter:{
+      get(){
+        return this.$store.state.filter
+      },
+      set(value){
+        this.$store.commit('setFilter',value);
+        this.$store.dispatch('listProducts')
+      }
+    }
+  }
 }
 </script>
 

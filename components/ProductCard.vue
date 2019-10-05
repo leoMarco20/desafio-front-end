@@ -7,15 +7,25 @@
        | Eletrônicos
       .name
         | {{name}} 
-      //-.description
-        | Descrição do produto
       .price  R$ {{price}}
-  .add_in_car  Adicionar no carrinho  
+  .add_in_car(@click="addCart()")  Adicionar no carrinho  
 </template>
 
 <script>
 export default {
-    props:['name','price','picture']
+    props:['name','price','picture'],
+
+    data(){
+      return{
+
+      }
+    },
+
+    methods:{
+      addCart:function(){
+        console.log(this.$state.products);
+      }
+    }
 }
 </script>
 
@@ -54,11 +64,11 @@ export default {
       font-size:12px;
     }
 
-    .description{
+    /*.description{
       font-size: 12px;
       color:#ccc;
       margin-top: 4px;
-    }
+    }*/
     .category{
       color:#9F4EC8;
       font-size: 12px;
@@ -79,6 +89,7 @@ export default {
   cursor: pointer;
   padding:10px;
   border-top: solid 2px #eee;
+  text-decoration:none;
 
   &:hover{
     background:#9F4EC8;
