@@ -1,2 +1,2 @@
-var ghpages = require('./node_modules_/gh-pages');
+var ghpages = require('gh-pages');
 ghpages.publish('dist', ()=>{ console.log("deployed!") });
