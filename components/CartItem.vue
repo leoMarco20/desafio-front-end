@@ -1,7 +1,7 @@
 <template lang="pug">
   .item_cart.row.center-xs
     .column.col-xs-8.row.middle-xs.between-xs  
-      .product.row
+      .product
         .trash_icon
           img(src="/icons/garbage.svg", title="Remover item")
         .info.col-xs.start-xs
@@ -54,9 +54,11 @@ export default {
 .column{
   border-bottom: solid 1px #8c8c8c;
   height: 100px;
+  min-width: 512px; 
   .product{
     height:100%;
     max-width: 20%;
+    display: flex;
     .trash_icon{
       height:100%;
       width:16px;
@@ -131,6 +133,25 @@ export default {
     max-width: 20%;
     flex-direction: column;
     font-size:12px;
+  }
+}
+
+
+@media screen and (max-width:920px) {
+    .product,.amount,.unity,.total{
+      transform: scale(.8);
+    }
+}
+
+@media screen and (max-width:768px) {
+    .column{
+      min-width: 312px; 
+    }
+}
+
+@media screen and (max-width:630px) {
+  .product,.amount,.unity,.total{
+    transform:scale(.6);
   }
 }
 </style>

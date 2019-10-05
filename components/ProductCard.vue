@@ -1,21 +1,21 @@
 <template lang="pug">
 .product_card
-  .content
-    img.img_product(src="https://i.zst.com.br/images/notebook-samsung-essentials-intel-core-i3-7020u-7-geracao-4gb-de-ram-hd-1-tb-15-6-full-hd-windows-10-e30-photo518274337-12-2d-f.jpg")
+  .content.between-xs
+    img.img_product(:src="picture")
     .info.col-xs.start-xs
       .category
        | Eletrônicos
       .name
-        | Notebook Xpto 
-      .description
+        | {{name}} 
+      //-.description
         | Descrição do produto
-      .prize  R$ 1.5000,00
+      .price  R$ {{price}}
   .add_in_car  Adicionar no carrinho  
 </template>
 
 <script>
 export default {
-    
+    props:['name','price','picture']
 }
 </script>
 
@@ -24,6 +24,8 @@ export default {
   width:250px;
   box-shadow: 0px 0px 4px #ccc;
   margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
 }
 
 .content{
@@ -31,17 +33,25 @@ export default {
 
   .img_product{
     width:100%;
-    height:50%;
+    padding:20px;
+    box-shadow: 0px 1px 2px #ccc;
   }
 
   .info{
     width:100%;
-    height:50%;
     background:#fff;
-    padding:20px;
-    .name,.prize{
-      margin-top: 4px;
+    padding:10px;
+    display:flex;
+    flex-direction:column;
+    justify-content: space-between;
+    height: 150px;
+    .name,.price{
+      margin-top: 20px;
       font-weight: bold;
+    }
+
+    .name{
+      font-size:12px;
     }
 
     .description{
@@ -55,19 +65,19 @@ export default {
       font-weight: bold;
     }
 
-    .prize{
+    .price{
       font-size: 18px;
     }
   }
 }
 
 .add_in_car{
+  height:40px;
+  width: 100%;
   color:#9F4EC8;
   background:#fff;
   cursor: pointer;
   padding:10px;
-  margin-top: 4px;
-  //box-shadow: 0px -2px 4px #ccc;
   border-top: solid 2px #eee;
 
   &:hover{
@@ -77,5 +87,9 @@ export default {
   }
 }
 
-
+@media only screen and (max-width: 830px){
+  .product_card{
+    transform: scale(.8);
+  }
+}
 </style>

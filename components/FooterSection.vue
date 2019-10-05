@@ -11,6 +11,7 @@ export default {
 
 <style lang="less" scoped>
 .footer{
+  min-width: 380px;
   padding:20px;
   font-size:18px;
   font-weight: bold;

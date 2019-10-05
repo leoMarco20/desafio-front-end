@@ -65,6 +65,7 @@ export default {
 .column{
   flex-grow:1;  
   padding-top: 40px;
+  
 }
 
 .titles{
@@ -72,6 +73,7 @@ export default {
   height: 50px;
   font-weight: bold;
   border-bottom: solid 1px #8c8c8c;
+  min-width: 532px; 
 }
 
 .total{
@@ -105,7 +107,9 @@ export default {
 
 .purchase{
   padding: 40px;
-
+  display: flex;
+  flex-wrap: nowrap;
+  
   .clear_cart{
     font-size: 12px;
     cursor:pointer;
@@ -118,5 +122,61 @@ export default {
     }
   }
   
+}
+
+.buttons{
+  min-width: 360px;
+}
+
+
+@media screen and (max-width:768px) {
+  .titles{
+    min-width: 312px; 
+    font-size:14px;
+  }
+
+  .info{
+    min-width: 312px; 
+  }
+
+  .total_installment,.prize{
+    transform:scale(.9);
+  }
+
+  .purchase{
+    //min-width: 530px;
+  }
+
+  .buttons,.clear_cart{
+    transform:scale(.8);
+    flex-wrap: nowrap;
+    font-size:12px;
+  }
+}
+
+@media screen and (max-width:630px) {
+  .titles{
+    font-size:12px;
+  }
+
+  .clear_cart{
+    display: none;
+  }
+
+  .purchase{
+    justify-content: center;
+  }
+
+}
+
+@media screen and (max-width:480px) {
+  .titles{
+    font-size:10px;
+  }
+
+  .total_installment,.prize{
+    transform:scale(.8);
+  }
+
 }
 </style>

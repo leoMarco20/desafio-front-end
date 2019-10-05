@@ -6,7 +6,7 @@
         .pages.middle-xs.end-xs
           .product_link Produtos
           nuxt-link(to="/shopCart")
-            img.car(src="/icons/shopping-cart.svg")
+            img.car(src="/icons/shopping-cart.svg")  
 </template>
 
 <script>
@@ -17,11 +17,13 @@ export default {
 
 <style lang="less" scoped>
 .header{
+  min-width: 380px;
   padding:20px;
   color: #8C8C8C;
   font-size:18px;
   font-weight: bold;
   box-shadow: 0px 0px 20px #ccc;
+  flex-shrink: 0;
 }
 
 .logo{

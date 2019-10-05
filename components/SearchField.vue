@@ -20,7 +20,6 @@ export default {
   justify-content: space-between;
   width: 100%;
   box-shadow: 2px 2px 12px 0px #ccc;
-
   span{
     font-weight: bold;
     color:#8c8c8c;
@@ -69,6 +68,12 @@ export default {
       width:20px;
       height:20px;
     }
+  }
+}
+
+@media only screen and (max-width: 768px){
+  span{
+    display:none;
   }
 }
 </style>

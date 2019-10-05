@@ -1,5 +1,5 @@
 <template lang="pug">
-  .checkout.col-xs.between-xs.center-xs
+  .checkout.col-xs-12.between-xs.center-xs
     header-section
     .col-xs.center-xs.row
       .column.col-xs-8.between-xs
@@ -85,7 +85,7 @@ export default {
       display:flex;
       margin:20px 0;
       justify-content: space-between;
-       
+      flex-wrap:wrap;
       div{
         margin:0 4px 0 0;
       }
@@ -128,5 +128,11 @@ export default {
     margin:0;
   }
 }
+
+@media only screen and (max-width:960px){
+ .column{
+  flex-wrap:wrap;
+ } 
+}  
 
 </style>
