@@ -60,7 +60,11 @@ export default {
   components: {
     'header-section' : HeaderSection,
     'footer-section' : FooterSection
-  }
+  },
+
+  mounted(){
+    this.$store.dispatch('loadCart');
+  },
 }
 </script>
 

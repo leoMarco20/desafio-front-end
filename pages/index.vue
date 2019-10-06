@@ -57,6 +57,7 @@ export default {
   },
 
   mounted(){
+    this.$store.dispatch('loadCart');
     this.$store.dispatch('listProducts').then(()=>{ 
     })
   },

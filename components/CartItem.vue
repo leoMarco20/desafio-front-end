@@ -37,12 +37,12 @@ export default {
   },
 
   mounted(){
-   
+   this.$store.dispatch('loadCart');
   },
 
   methods:{
     increase:function(item,key){
-      this.$store.commit('updateItemCart',{key,value:item.qty+1});      
+      this.$store.commit('updateItemCart',{key,value:item.qty+1});  
     },
     decrease:function(item,key){
       item.qty > 1 ? this.$store.commit('updateItemCart',{key,value:item.qty-1}) : null;

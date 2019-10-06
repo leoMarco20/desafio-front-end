@@ -5,13 +5,26 @@
           span Place
         .pages.middle-xs.end-xs
           .product_link Produtos
-          nuxt-link(to="/shopCart")
-            img.car(src="/icons/shopping-cart.svg")  
+          nuxt-link.car(to="/shopCart")
+            img.icon(src="/icons/shopping-cart.svg")  
+            .number(v-if="count")
+              span {{count}}
 </template>
 
 <script>
 export default {
-    
+  computed:{
+    count:{
+      get(){
+        return this.$store.state.count
+      }
+    },
+  },
+
+  mounted(){
+    this.$store.dispatch('loadCart');
+    this.$store.dispatch('countItemCart');
+  }
 }
 </script>
 
@@ -40,9 +53,31 @@ export default {
 
 .pages{
   display:flex;
-  .car,.product_link{
+  .icon,.product_link{
     margin:0 4px;
     font-size:12px;
+  }
+
+  .car{
+    display: flex;
+    position: relative;
+
+    .number{
+      border-radius: 50%;
+      color: #fff;
+      position: absolute;
+      bottom: -2px;
+      right: -6px;
+      font-size: 10px;
+      background: red;
+      width: 10px;
+      display: flex;
+      height: 12px;
+      justify-content: center;
+      font-weight: bold;
+      align-items: center;
+      padding: 4px;
+    }
   }
 }
 

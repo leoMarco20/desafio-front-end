@@ -33,7 +33,7 @@
         .buttons.row.end-xs
           nuxt-link.btn.btn-secondary(to="/",v-if="!cartItems.length") Página inicial
           nuxt-link.btn.btn-secondary(to="/",v-if="cartItems.length") Continuar comprando
-          .btn.btn-primary(v-if="cartItems.length") Confirmar compra
+          nuxt-link.btn.btn-primary(to="/checkout",v-if="cartItems.length") Confirmar compra
     footer-section
 </template>
 
@@ -48,6 +48,10 @@ export default {
     'header-section' : HeaderSection,
     'footer-section' : FooterSection,
     'cart-item' : CartItem
+  },
+
+  mounted(){
+    this.$store.dispatch('loadCart');
   },
 
   computed:{
@@ -85,7 +89,6 @@ export default {
 }
 
 .column{
-  flex-grow:1;  
   padding-top: 40px;
   
 }

@@ -2,6 +2,7 @@ export default{
 
   'products' : [],
   'filter': '',
+  'count': 0,
   
   'shopCart':{
     'selected_products':[
