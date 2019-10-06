@@ -21,7 +21,7 @@
         search-field
       .col-xs-8.row.between-xs
         product-card(v-for="p in products", :name="p.name", :picture="p.picture", :price="p.price")
-        
+        .dummy
     footer-section    
     
 
@@ -125,11 +125,21 @@ export default {
 
 .product_list{
   padding:40px 0px;
-
+  flex-shrink: 0;
+  min-height: 100%;
   .search{
     margin-bottom: 60px;
     min-width: 280px;
+    height: 80px;
   }
+}
+
+.dummy{
+  width: 250px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+
 }
 
 @media only screen and (max-width: 768px){
