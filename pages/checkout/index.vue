@@ -4,49 +4,49 @@
     .col-xs.center-xs.row
       .column.col-xs-8.between-xs
         .info
-          .field.row.start-xs(:class="{'err_field': errUser.name}")
+          .field.row.start-xs(:class="{'err_field': errUser.name && dirty.name}")
             span Nome* 
             input(v-model="name")
-          .field.row.start-xs(:class="{'err_field': errUser.email}")
+          .field.row.start-xs(:class="{'err_field': errUser.email && dirty.email}")
             span Email*
             input(v-model="email")
-          .field.row.start-xs(:class="{'err_field': errUser.cpf}")
+          .field.row.start-xs(:class="{'err_field': errUser.cpf && dirty.cpf}")
             span CPF*
             input(v-model="cpf")
           .flex
-            .field.row.start-xs(:class="{'err_field': errUser.birthDate}")
+            .field.row.start-xs
               span Data nascimento
               input(v-model="birthDate")
-            .field.row.start-xs(:class="{'err_field': errUser.phone}")
+            .field.row.start-xs(:class="{'err_field': errUser.phone && dirty.phone}")
               span Telefone*
               input(v-model="phone")  
         .cep
-          .field.row.start-xs(:class="{'err_field': errUser.zipCode}")
+          .field.row.start-xs(:class="{'err_field': errUser.zipCode && dirty.zipCode}")
             span CEP*
             input(v-model="zipCode")
           .flex
-            .field.row.start-xs(:class="{'err_field': errUser.address}")
+            .field.row.start-xs
               span Endereço
               input(v-model="address")
-            .small_field.row.start-xs(:class="{'err_field': errUser.number}")
+            .small_field.row.start-xs
               span Número
               input(v-model="number")
           .flex
-            .field.row.start-xs(:class="{'err_field': errUser.complement}")
+            .field.row.start-xs
               span Complemento
               input(v-model="complement")
-            .field.row.start-xs(:class="{'err_field': errUser.neightborhood}")
+            .field.row.start-xs
               span Bairro
               input(v-model="neightborhood")
           .flex
-            .field.row.start-xs(:class="{'err_field': errUser.city}")
+            .field.row.start-xs
               span Cidade
               input(v-model="city")
-            .small_field.row.start-xs(:class="{'err_field': errUser.state}")
+            .small_field.row.start-xs 
               span Estado
               input(v-model="state")
           .confirm.row.end-xs.middle-xs   
-            .btn.btn-primary Cadastrar
+            .btn.btn-primary(:class="{'disabled': validate(errUser) || disable}") Cadastrar
     footer-section
 
     
@@ -62,6 +62,18 @@ export default {
     'footer-section' : FooterSection
   },
 
+  data(){
+    return{
+      dirty:{
+        name:false,
+        email:false,
+        phone:false,
+        zipCode:false,
+        cpf:false
+      }
+    }
+  },
+
   computed:{
     name:{
       get(){
@@ -70,6 +82,7 @@ export default {
 
       set(value){
         this.$store.commit("setName",value);
+        this.dirty.name = true;
       }
     },
 
@@ -80,6 +93,7 @@ export default {
 
       set(value){
         this.$store.commit("setEmail",value);
+        this.dirty.email = true;
       }
     },
 
@@ -90,6 +104,7 @@ export default {
 
       set(value){
         this.$store.commit("setCpf",value);
+        this.dirty.cpf = true;
       }
     },
 
@@ -100,6 +115,7 @@ export default {
 
       set(value){
         this.$store.commit("setPhone",value);
+        this.dirty.phone = true;
       }
     },
     
@@ -120,6 +136,7 @@ export default {
 
       set(value){
         this.$store.commit("setZipCode",value);
+        this.dirty.zipCode = true;
       }
     },
 
@@ -193,6 +210,15 @@ export default {
   mounted(){
     this.$store.dispatch('loadCart');
   },
+
+  methods:{
+    validate:function(errUser){
+      return Object.keys(errUser).some((k)=>{
+        return errUser[k]
+       
+      })
+    }
+  }
 }
 </script>
 

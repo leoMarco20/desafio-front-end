@@ -72,28 +72,31 @@ export default{
 
   setEmail(state,value){
     state.user.email = value;
-    
+    value.length ? state.user.errUser.email = false : state.user.errUser.email = true; 
   },
 
   setCpf(state,value){
     state.user.cpf = value;
-    value.length || value.match(/^([0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}|)$/) ? state.user.errUser.cpf = false : state.user.errUser.cpf = true;
+    value.length ? state.user.errUser.cpf = false : state.user.errUser.cpf = true; 
   },
 
   setBirthDate(state,value){
-    state.user.birthDate = value;
+    state.user.birthDate = value; 
   },
 
   setPhone(state,value){
     state.user.phone = value;
+    value.length ? state.user.errUser.phone = false : state.user.errUser.phone = true;
   },
 
   setAddress(state,value){
     state.user.address = value;
+    
   },
 
   setZipCode(state,value){
     state.user.zipCode = value;
+    value.length ? state.user.errUser.zipCode = false : state.user.errUser.zipCode = true;
   },
 
   setState(state,value){

@@ -38,6 +38,8 @@ html {
   outline: none;
   text-decoration: none;
   height:40px;
+
+  
 }
 
 .btn-primary{
@@ -50,6 +52,12 @@ html {
   color:#5D5758;
   background: #bbb;
   
+}
+
+.disabled{
+  background: #ccc;
+  cursor:default;
+  pointer-events:none;
 }
 
 </style>

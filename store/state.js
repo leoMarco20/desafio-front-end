@@ -26,12 +26,12 @@ export default{
     'address':'',
     
     'errUser':{
-      'name':'',
-      'email':'',
-      'cpf':'',
-      'phone':'',
-      'birth_date':'',
-      'zip_code':'',
+      'name':true,
+      'email':true,
+      'cpf':true,
+      'phone':true,
+      'birthDate':'',
+      'zipCode':true,
       'city':'',
       'number':'',
       'neightborhood':'',

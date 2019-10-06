@@ -123,6 +123,10 @@ export default {
   
 }
 
+.info{
+  color:#5D5758;
+}
+
 .product_list{
   padding:40px 0px;
   flex-shrink: 0;
