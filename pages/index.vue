@@ -58,7 +58,6 @@ export default {
 
   mounted(){
     this.$store.dispatch('listProducts').then(()=>{ 
-      console.log(this.products)
     })
   },
 

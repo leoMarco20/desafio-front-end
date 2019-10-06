@@ -2,47 +2,58 @@
   .item_cart.row.center-xs
     .column.col-xs-8.row.middle-xs.between-xs  
       .product
-        .trash_icon
+        .trash_icon(@click="removeItem(itemKey)")
           img(src="/icons/garbage.svg", title="Remover item")
         .info.col-xs.start-xs
           .category Eletrônicos
-          .name Notebook Acer Xpto 5 3.0 
-
-
+          .name(:title="name") {{name}} 
       .amount
         .border
-          .amount_icon.left(@click="increase()", title="Acrescentar uma unidade")
-            img(src="/icons/plus.svg")
-          .counter
-            span {{ amount }}
-          .amount_icon.right(@click="decrease()", title="Remover uma unidade")
+          .amount_icon.left(@click="decrease(item,itemKey)", title="Remover uma unidade")
             img(src="/icons/minus.svg")
+          .counter
+            span {{item.qty}}
+          .amount_icon.right(@click="increase(item,itemKey)", title="Acrescentar uma unidade")
+            img(src="/icons/plus.svg")
       .unity
         p 
-          b R$ 1.5000,00 
+          b R$ {{formatReal(price.toFixed(2))}} 
           span à vista
-        span ou 10x R$150,00
+        span ou 10x R$ {{formatReal((price/10).toFixed(2))}}
       .total
         p 
-          b R$ 1.5000,00 
+          b R$ {{formatReal(item.total.toFixed(2))}} 
           span à vista
-        span ou 10x R$150,00  
+        span ou 10x R$ {{formatReal((item.total/10).toFixed(2))}}  
 </template>
 
 <script>
 export default {
+  props:['item-key','item','name','price'],
   data(){
     return{
-      amount:0
+
     }
   },
 
+  mounted(){
+   
+  },
+
   methods:{
-    increase:function(){
-      return this.amount++;
+    increase:function(item,key){
+      this.$store.commit('updateItemCart',{key,value:item.qty+1});      
     },
-    decrease:function(){
-      this.amount ? this.amount-- : null;
+    decrease:function(item,key){
+      item.qty > 1 ? this.$store.commit('updateItemCart',{key,value:item.qty-1}) : null;
+    },
+
+    removeItem:function(key){
+      this.$store.commit('removeItemCart',key);      
+    },
+
+    formatReal:function(value){
+      return value.replace('.',',');
     }
   }
 }
@@ -77,11 +88,20 @@ export default {
       max-width: 200px;
       display: flex;
       flex-direction: column;
-      justify-content: space-around;
-      font-size:14px;
+      font-size:12px;
       .category{
         color:#9F4EC8;
         font-size: 12px;
+        height:14px;
+      }
+
+      .name{
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        padding-top: 10px;
       }
     }
   }

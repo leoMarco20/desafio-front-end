@@ -5,13 +5,9 @@ export default{
   
   'shopCart':{
     'selected_products':[
-      {
-        'name': '',
-        'qtd': 0,
-        'unityPrice' : '',
-        'totalPrice' : 0
-      }  
-    ]
+       
+    ],
+    'total':0
   },
 
   'user':{

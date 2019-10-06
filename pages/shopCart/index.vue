@@ -3,39 +3,37 @@
     header-section
     
     .column.row.center-xs
-      .titles.col-xs-8.row.between-xs
+      .titles.col-xs-8.row.between-xs(v-if="cartItems.length" )
         span Produto
         span Quantidade
         span Valor unitário
         span Total
 
-    cart-item
-    cart-item
-    cart-item 
-    cart-item
-    cart-item
-    cart-item   
+
+      span.empty.row.center-xs(v-if="!cartItems.length") O seu carrinho está vazio
+    cart-item(v-if="cartItems.length" v-for="i in cartItems", :item="i", :item-key="cartItems.indexOf(i)" :name="i.name",:price="i.unityPrice")
     
-    .total.row.center-xs
+    .total.row.center-xs(v-if="cartItems.length" )
       .info.col-xs-8.end-xs
         .prize
           b Total à vista 
-          b R$ 3.000,00
+          b R$ {{formatReal(shopCartTotal.toFixed(2))}}
         .total_installment.row.end-xs
           b Total parcelado 
           .installment.start-xs
             p
               span em até 
-              b 10X R$ 300,00
-            span (Total R$ 3.000,00)
+              b 10X R$ {{formatReal((shopCartTotal/10).toFixed(2))}}
+            span (Total R$ {{formatReal(shopCartTotal.toFixed(2))}})
     .row.center-xs
       .purchase.col-xs-8.row.between-xs
-        .clear_cart.row.middle-xs
+        .clear_cart.row.middle-xs(v-if="cartItems.length", @click="cleanCart()")
           img.trash_icon(src="/icons/garbage.svg")
           span Limpar carrinho
-        .buttons.row
-          nuxt-link.btn.btn-secondary(to="/") Continuar comprando
-          .btn.btn-primary Confirmar compra
+        .buttons.row.end-xs
+          nuxt-link.btn.btn-secondary(to="/",v-if="!cartItems.length") Página inicial
+          nuxt-link.btn.btn-secondary(to="/",v-if="cartItems.length") Continuar comprando
+          .btn.btn-primary(v-if="cartItems.length") Confirmar compra
     footer-section
 </template>
 
@@ -50,6 +48,30 @@ export default {
     'header-section' : HeaderSection,
     'footer-section' : FooterSection,
     'cart-item' : CartItem
+  },
+
+  computed:{
+    cartItems:{
+      get(){
+        return this.$store.state.shopCart.selected_products
+      }
+    },
+
+    shopCartTotal:{
+      get(){
+        return this.$store.state.shopCart.total
+      }
+    }
+  },
+
+  methods:{
+    formatReal:function(value){
+      return value.replace('.',',');
+    },
+
+    cleanCart:function(){
+      this.$store.commit("cleanCart"); 
+    }
   }
 }
 </script>
@@ -76,10 +98,17 @@ export default {
   min-width: 532px; 
 }
 
+.empty{
+  color: #ccc;
+  font-weight: bold;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+}
+
 .total{
 
   .info{
-    //background: #ccc;
     padding: 40px;
     border-bottom: solid 1px #8c8c8c;
     .prize{
@@ -114,6 +143,7 @@ export default {
     font-size: 12px;
     cursor:pointer;
     padding: 2px;
+    flex-grow:1;
 
     .trash_icon{
       width:14px;
@@ -126,6 +156,7 @@ export default {
 
 .buttons{
   min-width: 360px;
+  flex-grow:1;
 }
 
 
@@ -141,10 +172,6 @@ export default {
 
   .total_installment,.prize{
     transform:scale(.9);
-  }
-
-  .purchase{
-    //min-width: 530px;
   }
 
   .buttons,.clear_cart{

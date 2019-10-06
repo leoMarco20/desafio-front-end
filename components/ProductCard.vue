@@ -8,7 +8,7 @@
       .name
         | {{name}} 
       .price  R$ {{price}}
-  .add_in_car(@click="addCart()")  Adicionar no carrinho  
+  .add_in_car(@click="addCart({'name':name, 'unityPrice': price})")  Adicionar no carrinho  
 </template>
 
 <script>
@@ -22,8 +22,9 @@ export default {
     },
 
     methods:{
-      addCart:function(){
-        console.log(this.$state.products);
+      addCart:function(item){
+        this.$store.commit('addInCart',item);
+        this.$router.push('shopCart');
       }
     }
 }
