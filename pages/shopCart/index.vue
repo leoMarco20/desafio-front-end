@@ -90,7 +90,8 @@ export default {
 
 .column{
   padding-top: 40px;
-  
+  flex-grow: 1;
+
 }
 
 .titles{

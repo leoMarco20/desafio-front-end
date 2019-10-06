@@ -63,5 +63,57 @@ export default{
   countQty(state,value){
     value ? state.count = state.count + value : state.count = 0;
     
+  },
+
+  setName(state,value){
+    state.user.name = value;
+    value.length ? state.user.errUser.name = false : state.user.errUser.name = true; 
+  },
+
+  setEmail(state,value){
+    state.user.email = value;
+    
+  },
+
+  setCpf(state,value){
+    state.user.cpf = value;
+    value.length || value.match(/^([0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}|)$/) ? state.user.errUser.cpf = false : state.user.errUser.cpf = true;
+  },
+
+  setBirthDate(state,value){
+    state.user.birthDate = value;
+  },
+
+  setPhone(state,value){
+    state.user.phone = value;
+  },
+
+  setAddress(state,value){
+    state.user.address = value;
+  },
+
+  setZipCode(state,value){
+    state.user.zipCode = value;
+  },
+
+  setState(state,value){
+    state.user.state = value;
+  },
+
+  setNumber(state,value){
+    state.user.number = value;
+  },
+
+  setComplement(state,value){
+    state.user.complement = value;
+  },
+
+  setNeightborhood(state,value){
+    state.user.neightborhood = value;
+  },
+
+  setCity(state,value){
+    state.user.city = value;
   }
+
 }

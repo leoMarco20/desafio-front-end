@@ -23,6 +23,23 @@ export default{
     'neightborhood':'',
     'state':'',
     'complement':'',
-    'addres':''
+    'address':'',
+    
+    'errUser':{
+      'name':'',
+      'email':'',
+      'cpf':'',
+      'phone':'',
+      'birth_date':'',
+      'zip_code':'',
+      'city':'',
+      'number':'',
+      'neightborhood':'',
+      'state':'',
+      'complement':'',
+      'address':''
+    }
   }
+
+  
 }
