@@ -1,6 +1,6 @@
 <template lang="pug">
   .shop_cart.col-xs.between-xs
-    header-section(:count="count")
+    header-section
     
     .column.row.center-xs
       .titles.col-xs-8.row.between-xs(v-if="cartItems.length" )

@@ -13,9 +13,16 @@
 
 <script>
 export default {
-  props:['count'],
+  computed:{
+    count:{
+      get(){
+        return this.$store.state.count
+      }
+    },
+  },
 
   mounted(){
+    this.$store.dispatch('loadCart');
     this.$store.dispatch('countItemCart');
   }
 }

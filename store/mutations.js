@@ -29,7 +29,7 @@ export default{
     this.commit('recalcTotalCart');
     this.dispatch('countItemCart');
     this.state.shopCart.loaded ? localStorage.setItem('meu-carrinho', JSON.stringify(this.state.shopCart.selected_products)) : null;
-    debugger
+    
   },
 
   removeItemCart({state,commit},i){
@@ -58,7 +58,7 @@ export default{
   },
 
   addFromStorage(state,value){
-    state.shopCart.selected_product = value || [] ;
+    state.shopCart.selected_products = value || [] ;
     this.commit('recalcTotalCart');
   },
 

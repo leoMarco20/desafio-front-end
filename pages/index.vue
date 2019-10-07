@@ -1,6 +1,6 @@
 <template lang="pug">
   .home.col-xs
-    header-section(:count="count")
+    header-section
     .slide.row
       .banner.center-xs 
         img.animated.slideInRight(:src='banners[active]',ref="banner")
@@ -54,11 +54,6 @@ export default {
     products:{
       get(){
         return this.$store.state.products
-      }
-    },
-    count:{
-      get(){
-        return this.$store.state.count
       }
     }
   },
