@@ -1,6 +1,6 @@
 <template lang="pug">
   .checkout.col-xs-12.between-xs.center-xs
-    header-section
+    header-section(:count="count")
     .col-xs.center-xs.row
       .column.col-xs-8.between-xs
         .info
@@ -85,6 +85,11 @@ export default {
   },
 
   computed:{
+    count:{
+      get(){
+        return this.$store.state.count
+      }
+    },
     name:{
       get(){
         return this.$store.state.user.name

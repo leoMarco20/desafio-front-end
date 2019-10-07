@@ -1,6 +1,6 @@
 <template lang="pug">
   .shop_cart.col-xs.between-xs
-    header-section
+    header-section(:count="count")
     
     .column.row.center-xs
       .titles.col-xs-8.row.between-xs(v-if="cartItems.length" )
@@ -64,6 +64,11 @@ export default {
     shopCartTotal:{
       get(){
         return this.$store.state.shopCart.total
+      }
+    },
+    count:{
+      get(){
+        return this.$store.state.count
       }
     }
   },
