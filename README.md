@@ -2,16 +2,16 @@
 
 # instalação do projeto
 
-## yarn install
+##### *yarn install*
 
 # Subir o projeto 
 
-## yarn run dev
+##### *yarn run dev*
 
 # Build do projeto
 
-## yarn run build
+##### *yarn run build*
 
 # Deploy para o firebase
 
-## firebase deploy
+##### *firebase deploy*
