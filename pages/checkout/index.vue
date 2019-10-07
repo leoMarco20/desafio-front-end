@@ -52,7 +52,9 @@
         img.iconCheck(src="/icons/check.svg")
         span Seu cadastro foi solicitado com sucesso
         img.iconTimes(src="/icons/times.svg",@click="hideMessagePopup()")
-        nuxt-link.link(to="/") Voltar para home
+        .link
+          img(src="/icons/left-arrow.svg")
+          nuxt-link(to="/") Voltar para home
       .shadow(@click.stop="hideMessagePopup()")  
     footer-section
 
@@ -362,8 +364,21 @@ export default {
     }
 
     .link{
-      color:#9F4EC8;
       margin-top: 20px;
+      display: flex;
+
+      a{
+        text-decoration: none;
+        color:#9F4EC8;
+        display: flex;
+        align-items: center;
+      }
+
+      img{
+        width:20px;
+        height:20px;
+        margin-right:10px;
+      }
     }
   }
 }
