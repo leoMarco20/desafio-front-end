@@ -56,7 +56,7 @@ export default{
   },
 
   addFromStorage(state,value){
-    state.shopCart.selected_products = value;
+    state.shopCart.selected_product = value || [] ;
     this.commit('recalcTotalCart');
   },
 
@@ -117,6 +117,37 @@ export default{
 
   setCity(state,value){
     state.user.city = value;
+  },
+
+  cleanUser(state){
+    state.user = {
+      'name':'',
+      'email':'',
+      'cpf':'',
+      'phone':'',
+      'birth_date':'',
+      'zip_code':'',
+      'city':'',
+      'number':'',
+      'neightborhood':'',
+      'state':'',
+      'complement':'',
+      'address':'',
+      
+      'errUser':{
+        'name':true,
+        'email':true,
+        'cpf':true,
+        'phone':true,
+        'birthDate':'',
+        'zipCode':true,
+        'city':'',
+        'number':'',
+        'neightborhood':'',
+        'state':'',
+        'complement':'',
+        'address':''
+      }};
   }
 
 }

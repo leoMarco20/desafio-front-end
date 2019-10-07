@@ -46,7 +46,14 @@
               span Estado
               input(v-model="state")
           .confirm.row.end-xs.middle-xs   
-            .btn.btn-primary(:class="{'disabled': validate(errUser) || disable}") Cadastrar
+            .btn.btn-primary(:class="{'disabled': validate(errUser)}", @click="showMessagePopup()") Cadastrar
+    .messagePopup(v-if="messagePopup")
+      .content()
+        img.iconCheck(src="/icons/check.svg")
+        span Seu cadastro foi solicitado com sucesso
+        img.iconTimes(src="/icons/times.svg",@click="hideMessagePopup()")
+        nuxt-link.link(to="/") Voltar para home
+      .shadow(@click.stop="hideMessagePopup()")  
     footer-section
 
     
@@ -70,7 +77,8 @@ export default {
         phone:false,
         zipCode:false,
         cpf:false
-      }
+      },
+      messagePopup: false
     }
   },
 
@@ -217,6 +225,22 @@ export default {
         return errUser[k]
        
       })
+    },
+
+    showMessagePopup:function(){
+      this.messagePopup = true;
+      this.$store.commit("cleanUser");
+      this.dirty = {
+        name:false,
+        email:false,
+        phone:false,
+        zipCode:false,
+        cpf:false
+      }
+    },
+
+    hideMessagePopup:function(){
+      this.messagePopup = false;
     }
   }
 }
@@ -290,6 +314,57 @@ export default {
     width:100%;
     text-align: center;
     margin:0;
+  }
+}
+
+.shadow{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,.5);
+}
+
+.messagePopup,.shadow{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .content{
+    background: #fff;
+    padding: 80px;
+    position:relative;
+    height:200px;
+    width:450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index:5;
+
+    .iconCheck{
+      width:80px;
+      margin:10px;
+    }
+
+    .iconTimes{
+      width:20px;
+      height:20px;
+      position:absolute;
+      top:6px;
+      right:6px;
+      cursor:pointer;
+      
+    }
+
+    .link{
+      color:#9F4EC8;
+      margin-top: 20px;
+    }
   }
 }
 

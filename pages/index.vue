@@ -2,19 +2,19 @@
   .home.col-xs
     header-section
     .slide.row
-      .banner.center-xs  
-        img(:src='banners[active]')
+      .banner.center-xs 
+        img.animated.slideInRight(:src='banners[active]',ref="banner")
       .menu_slide.col-xs.center-xs
-        .radio
-          input(type='radio', name='slide', value="0", active v-model="active", ref="b1")
+        .radio(@click="()=>{clearIntervalBanner(); active=0;}")
+          input(type='radio', name='slide', value="0",active)
           .toggle(:class="{'active': active == 0}")
       
-        .radio  
-          input(type='radio', name='slide', value="1", v-model="active", ref="b2") 
+        .radio(@click="()=>{clearIntervalBanner(); active=1}") 
+          input( type='radio', name='slide', value="1") 
           .toggle(:class="{'active': active == 1}")
       
-        .radio
-          input(type='radio', name='slide', value="2", v-model="active", ref="b3")      
+        .radio(@click="()=>{clearIntervalBanner(); active=2}")
+          input(type='radio', name='slide', value="2")      
           .toggle(:class="{'active': active == 2}")
     .product_list.row.center-xs
       .search.col-xs-8.row
@@ -43,8 +43,10 @@ export default {
 
   data(){
     return{
-      banners:['/img/banner1.png','https://images.samsung.com/is/image/samsung/br-notebook-expert-x20-np350xaa-kfwbr-np350xaa-kfwbr-frontovergray-108088753?$PD_GALLERY_L_JPG$','https://www.havan.com.br/media/catalog/product/cache/55f334c6f9412d6b39cfe195ce4e3943/n/o/notebook-positivo-motion-14-quadcore-4gb-1tb-windows10_260494.jpg'],
-      active: 0
+      banners:['/img/banner1.svg','/img/banner2.svg','/img/banner3.svg'],
+      active: 0,
+      clickChange:false,
+      interval:''
     }
   },
 
@@ -60,12 +62,41 @@ export default {
     this.$store.dispatch('loadCart');
     this.$store.dispatch('listProducts').then(()=>{ 
     })
+
+    this.autoChangeBanner();
+
   },
 
   methods:{
-    change:function(pos){
-      this.active = pos;
+    changeBanner:function(){
+      this.$refs.banner.style = "display: none;"
+      if(this.active == this.banners.length-1){
+        setTimeout(() => {
+          this.$refs.banner.style = "display: flex;"
+        }, 500);
+        return this.active = 0;
+        
+      }
+      setTimeout(() => {
+        this.$refs.banner.style = "display: flex;"
+      }, 500);
+      this.active = this.active + 1;
     },
+
+    autoChangeBanner:function(clickChange){
+      this.interval = setInterval(() => { 
+        this.changeBanner();
+
+        
+      }, 8000);
+    },
+
+    clearIntervalBanner:function(){
+      clearInterval(this.interval);
+      setTimeout(() => {
+        this.autoChangeBanner();
+      }, 3000);
+    }
     
   }
 }
@@ -78,14 +109,20 @@ export default {
 
 .slide{
   display: flex;
-  flex-direction: column;
+  flex-direction: column !important;
 
   .banner{
     height: 300px;
+    overflow: hidden;
 
     img{
       max-height: 100%;
       width:100%;
+      
+      &.bounceOutLeft {
+        -webkit-animation-name: bounceOutLeft;
+        animation-name: bounceOutLeft;
+      }
     }
   }
   .menu_slide{
