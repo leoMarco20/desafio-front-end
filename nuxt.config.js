@@ -13,8 +13,8 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href:'css/flexboxgrid.min.css', type:'text/css'},
-      { rel:'stylesheet', href:'css/animate.css'}
+      { rel: 'stylesheet', href:'/css/flexboxgrid.min.css', type:'text/css'},
+      { rel:'stylesheet', href:'/css/animate.css'}
     ],
     script:[
      
