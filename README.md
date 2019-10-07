@@ -1,7 +1,7 @@
 # desafio-front-end
 
 * Este projeto foi feito em Vue e Nuxt. 
-* Foi hospedado no firebase com o link [google](https://desafio-front-end-989ff.firebaseapp.com/)
+* Foi hospedado no firebase com o link [desafio-front-end](https://desafio-front-end-989ff.firebaseapp.com/)
 
 # instalação do projeto
 
