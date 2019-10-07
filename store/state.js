@@ -8,7 +8,8 @@ export default{
     'selected_products':[
        
     ],
-    'total':0
+    'total':0,
+    'loaded':false
   },
 
   'user':{

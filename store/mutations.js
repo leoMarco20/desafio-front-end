@@ -18,7 +18,8 @@ export default{
     this.state.shopCart.selected_products.push(value);
     this.commit('recalcTotalCart');
     this.dispatch('countItemCart');
-    localStorage.setItem('meu-carrinho', JSON.stringify(this.state.shopCart.selected_products));
+
+    this.state.shopCart.loaded ? localStorage.setItem('meu-carrinho', JSON.stringify(this.state.shopCart.selected_products)) : null;
   },
 
   updateItemCart({state,commit},{key,value}){
@@ -27,20 +28,21 @@ export default{
     this.state.shopCart.selected_products[key].total.toFixed(2);
     this.commit('recalcTotalCart');
     this.dispatch('countItemCart');
-    localStorage.setItem('meu-carrinho', JSON.stringify(this.state.shopCart.selected_products));
+    this.state.shopCart.loaded ? localStorage.setItem('meu-carrinho', JSON.stringify(this.state.shopCart.selected_products)) : null;
+    debugger
   },
 
   removeItemCart({state,commit},i){
     this.state.shopCart.selected_products.splice(i,1);
     this.commit('recalcTotalCart');
     this.dispatch('countItemCart');
-    localStorage.setItem('meu-carrinho', JSON.stringify(this.state.shopCart.selected_products));
+    this.state.shopCart.loaded ? localStorage.setItem('meu-carrinho', JSON.stringify(this.state.shopCart.selected_products)) : null;
   },
 
   cleanCart(state){
     state.shopCart.selected_products = [];
     this.dispatch('countItemCart');
-    localStorage.setItem('meu-carrinho', JSON.stringify(this.state.shopCart.selected_products));
+    this.state.shopCart.loaded ? localStorage.setItem('meu-carrinho', JSON.stringify(this.state.shopCart.selected_products)) : null;
   },
   
   recalcTotalCart(state){
@@ -63,6 +65,10 @@ export default{
   countQty(state,value){
     value ? state.count = state.count + value : state.count = 0;
     
+  },
+
+  setLoaded(state,value){
+    state.shopCart.loaded = value;
   },
 
   setName(state,value){

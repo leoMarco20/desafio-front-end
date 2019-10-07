@@ -74,7 +74,7 @@ export default {
     },
 
     cleanCart:function(){
-      this.$store.commit("cleanCart"); 
+      this.$store.commit("cleanCart");
     }
   }
 }

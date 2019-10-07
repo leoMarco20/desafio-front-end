@@ -18,7 +18,9 @@ export default{
 
   loadCart({state,commit}){
     return new Promise((resolve,reject)=>{
+      console.log(JSON.parse(window.localStorage.getItem('meu-carrinho')));
       commit("addFromStorage",JSON.parse(window.localStorage.getItem('meu-carrinho')));
+      commit("setLoaded",true);
       resolve()
     })  
   },
